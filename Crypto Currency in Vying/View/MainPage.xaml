@@ -1,0 +1,81 @@
+﻿<Page
+    x:Class="Crypto_Currency_in_Vying.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Crypto_Currency_in_Vying"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interaction="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core" xmlns:Model="using:Crypto_Currency_in_Vying.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+        ItemsSource="{x:Bind ViewModel.Ids}"
+        SelectedItem="{x:Bind ViewModel.SelectedId, Mode=TwoWay}">
+            <interaction:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
+                </core:EventTriggerBehavior>
+            </interaction:Interaction.Behaviors>
+        </ComboBox>
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            HorizontalAlignment="Center"
+            Content="Load Coins"
+            Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
+
+        <ListView
+            Grid.Column="1"
+            Grid.Row="0"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            ItemsSource="{x:Bind ViewModel.Coins}"
+            SelectedItem="{x:Bind ViewModel.SelectedCoin}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="Model:Coin">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            Text="{x:Bind Name}"/>
+                        <TextBlock
+                            Grid.Row="1"
+                            Text="{x:Bind Symbol}"/>
+                        <TextBlock
+                            Grid.Row="2"
+                            Text="{x:Bind ID}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ProgressBar
+            Grid.Column="1"
+            Grid.Row="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Width="100"
+            Height="50"
+            Visibility="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand.IsRunning, Mode=OneWay}"
+            />
+    </Grid>
+</Page>
