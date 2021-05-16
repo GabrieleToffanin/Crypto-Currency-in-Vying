@@ -19,6 +19,7 @@ namespace Crypto_Currency_in_Vying
         private readonly ISettingsService SettingsService;
         public CoinsViewModel(ISettingsService settingsService)
         {
+            Task.Run(() => this.LoadPostsAsync()).Wait();
             LoadCoinsAsyncRelayCommand = new AsyncRelayCommand(LoadPostsAsync);
             SettingsService = settingsService;
             selectedId = settingsService.GetValue<string>(nameof(SelectedId)) ?? Ids[0];
@@ -55,11 +56,12 @@ namespace Crypto_Currency_in_Vying
 
         private async Task LoadPostsAsync()
         {
-            var response = await CoinsService.LoadCoinsAsync(SelectedId);
-
             Coins.Clear();
-
-            Coins.Add(response);
+            foreach(string id in Ids) 
+            { 
+                var response = await CoinsService.LoadCoinsAsync(id);
+                Coins.Add(response);
+            }
         }
 
     }

@@ -19,7 +19,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ComboBox
+        <!--<ComboBox
             Grid.Row="0"
             Grid.Column="0"
             HorizontalAlignment="Center"
@@ -31,7 +31,7 @@
                     <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
                 </core:EventTriggerBehavior>
             </interaction:Interaction.Behaviors>
-        </ComboBox>
+        </ComboBox> -->
 
         <Button
             Grid.Row="1"
@@ -41,7 +41,7 @@
             Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
 
         <ListView
-            Grid.Column="1"
+            Grid.Column="0"
             Grid.Row="0"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
