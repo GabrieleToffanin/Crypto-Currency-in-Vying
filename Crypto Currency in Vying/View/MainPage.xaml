@@ -21,19 +21,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <!--<ComboBox
-            Grid.Row="0"
-            Grid.Column="0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-        ItemsSource="{x:Bind ViewModel.Ids}"
-        SelectedItem="{x:Bind ViewModel.SelectedId, Mode=TwoWay}">
-            <interaction:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
-                </core:EventTriggerBehavior>
-            </interaction:Interaction.Behaviors>
-        </ComboBox> -->
+
 
         <Button
             Grid.Row="1"
@@ -41,42 +29,32 @@
             HorizontalAlignment="Center"
             Content="Load Coins"
             Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
-
-        <ListView
-            Grid.Column="0"
-            Grid.Row="0"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
+        <controls:DataGrid
+            Grid.Column="1"
             ItemsSource="{x:Bind ViewModel.Coins}"
-            SelectedItem="{x:Bind ViewModel.SelectedCoin}">
-            <ListView.ItemTemplate>
-                <DataTemplate x:DataType="Model:Coin">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock
-                            Grid.Row="0"
-                            Text="{x:Bind Name}"/>
-                        <TextBlock
-                            Grid.Row="1"
-                            Text="{x:Bind Value}"/>
-                        
-                    </Grid>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+            CanUserSortColumns="True"
+            AutoGenerateColumns="False"
+            Sorting="CoinsDataGrid_Sorting"
+            x:Name="CoinsDataGrid">
+
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="Name" Binding="{Binding Name}" Tag="Name"/>
+                <controls:DataGridTextColumn Header="Currency" Binding="{Binding Currency}" Tag="Currency"/>
+                <controls:DataGridTextColumn Header="Market" Binding="{Binding Market}" Tag="Market"/>
+                <controls:DataGridTextColumn Header="Value" Binding="{Binding Value}" Tag="Value"/>
+                <controls:DataGridTextColumn Header="Volume" Binding="{Binding Volume}" Tag="Volume"/>
+                
+                <!-- Add more columns -->
+            </controls:DataGrid.Columns>
+
             <interaction:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Loaded">
                     <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
                 </core:EventTriggerBehavior>
             </interaction:Interaction.Behaviors>
-        </ListView>
-        <controls:DataGrid
-            Grid.Column="1"
-            ItemsSource="{x:Bind ViewModel.Coins}">
+            
         </controls:DataGrid>
+        
         <ProgressBar
             Grid.Column="1"
             Grid.Row="1"
