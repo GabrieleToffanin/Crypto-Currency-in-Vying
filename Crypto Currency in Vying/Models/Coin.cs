@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Crypto_Currency_in_Vying.Models
 {
     public class Coin
     {
-        [JsonPropertyName("name")]
+        public Coin(string name,string market, string currency, double value, double volume)
+        {
+            Name = name;
+            Market = market;
+            Volume = volume;
+            Currency = currency;
+            Value = value;
+        }
         public string Name { get; set; }
-        [JsonPropertyName("symbol")]
-        public string Symbol { get; set; }
-        [JsonPropertyName("id")]
-        public string ID { get; set; }
+
+        public string Currency { get; set; }
+
+        public string Market { get; set; }
+
+        public double Value { get; set; }
+
+        public double Volume { get; set; }
     }
 }

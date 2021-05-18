@@ -119,8 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\CoinsViewModel.cs" />
     <Compile Include="Models\Coin.cs" />
+    <Compile Include="ViewModel\CoinsViewModel.cs" />
+    <Compile Include="Models\PostQueryResponse.cs" />
     <Compile Include="Models\ISettingsService.cs" />
     <Compile Include="Services\ICoinsService.cs" />
     <Compile Include="Services\SettingsService.cs" />
@@ -165,6 +166,9 @@
       <Version>7.0.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Behaviors">
+      <Version>7.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>7.0.2</Version>
     </PackageReference>
     <PackageReference Include="Refit">

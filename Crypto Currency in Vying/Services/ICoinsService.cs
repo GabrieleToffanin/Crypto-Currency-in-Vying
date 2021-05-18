@@ -11,6 +11,6 @@ namespace Crypto_Currency_in_Vying.Services
     public interface ICoinsService
     {
         [Get("/api/v3/coins/{id}")]
-        Task<Coin> LoadCoinsAsync(string id);
+        Task<PostQueryResponse> LoadCoinsAsync(string id);
     }
 }

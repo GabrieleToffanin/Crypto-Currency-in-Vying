@@ -7,9 +7,11 @@ using Refit;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 
 namespace Crypto_Currency_in_Vying
 {
@@ -18,17 +20,15 @@ namespace Crypto_Currency_in_Vying
 
         private readonly ISettingsService SettingsService;
         public CoinsViewModel(ISettingsService settingsService)
-        {
-            Task.Run(() => this.LoadPostsAsync()).Wait();
+        {   
             LoadCoinsAsyncRelayCommand = new AsyncRelayCommand(LoadPostsAsync);
             SettingsService = settingsService;
             selectedId = settingsService.GetValue<string>(nameof(SelectedId)) ?? Ids[0];
+            
         }
         public IAsyncRelayCommand LoadCoinsAsyncRelayCommand { get; }
 
         public ObservableCollection<Coin> Coins = new ObservableCollection<Coin>();
-
-        private List<Coin> coinsToEvaluate = new List<Coin>();
 
         public IReadOnlyList<string> Ids = new[]
         {
@@ -60,9 +60,15 @@ namespace Crypto_Currency_in_Vying
             foreach(string id in Ids) 
             { 
                 var response = await CoinsService.LoadCoinsAsync(id);
-                Coins.Add(response);
+                foreach(var item in response.CurrentPrice)
+                {
+                    if (item.Currency.Equals("EUR"))
+                        Coins.Add(new Coin(response.Name,item.market.Name ,item.Currency, item.Value, item.Volume));
+                }
             }
         }
+
+        
 
     }
 }

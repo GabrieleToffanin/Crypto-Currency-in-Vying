@@ -28,8 +28,11 @@ namespace Crypto_Currency_in_Vying
         {
             this.InitializeComponent();
             this.DataContext = Ioc.Default.GetRequiredService<CoinsViewModel>();
+            
         }
 
         public CoinsViewModel ViewModel => (CoinsViewModel)DataContext;
+
+        
     }
 }
