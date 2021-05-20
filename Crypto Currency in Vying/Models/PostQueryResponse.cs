@@ -18,6 +18,8 @@ namespace Crypto_Currency_in_Vying.Models
         public string ID { get; set; }
         [JsonPropertyName("tickers")]
         public List<Ticker> CurrentPrice { get; set; }
+        [JsonPropertyName("image")]
+        public Image Image { get; set; }
 
 
     }
@@ -37,6 +39,12 @@ namespace Crypto_Currency_in_Vying.Models
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
+    }
+
+    public class Image
+    {
+        [JsonPropertyName("thumb")]
+        public string Thumb { get; set; }
     }
 
     
