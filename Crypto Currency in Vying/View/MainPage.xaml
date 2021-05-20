@@ -14,43 +14,68 @@
 
     <Page.Resources>
         <Style x:Key="DataGridCustomStyle" TargetType="controls:DataGrid">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="CanUserSortColumns" Value="True"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="Background" Value="{StaticResource CustomAcrylicDataGridBackgroundBrush}"/>
-            <Setter Property="AlternatingRowBackground" Value="{StaticResource CustomAcrylicDataGridBackgroundBrush}"/>
-
+            <Setter Property="VerticalAlignment" Value="Top"/>
         </Style>
-        
+        <DataTemplate x:Key="ImageDataGrid">
+            <StackPanel>
+                <Image>
+                    <Image.Source>
+                        <BitmapImage UriSource="{Binding Image}"/>
+                    </Image.Source>
+                </Image>
+            </StackPanel>
+        </DataTemplate>
     </Page.Resources>
     <Grid>
-            
-
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <controls:DataGrid
+            Grid.Column="0"
+            Grid.Row="0"
             Style="{StaticResource DataGridCustomStyle}"
             ItemsSource="{x:Bind ViewModel.Coins}"
             Sorting="CoinsDataGrid_Sorting"
-            x:Name="CoinsDataGrid">
-
-            
+            x:Name="CoinsDataGrid"
+            IsReadOnly="True">
             <controls:DataGrid.Columns>
+                <controls:DataGridTemplateColumn CellTemplate="{StaticResource ImageDataGrid}" Tag="BitMapImage"/>
                 <controls:DataGridTextColumn Header="Name" Binding="{Binding Name}" Tag="Name"/>
                 <controls:DataGridTextColumn Header="Currency" Binding="{Binding Currency}" Tag="Currency"/>
                 <controls:DataGridTextColumn Header="Market" Binding="{Binding Market}" Tag="Market"/>
                 <controls:DataGridTextColumn Header="Value" Binding="{Binding Value}" Tag="Value"/>
                 <controls:DataGridTextColumn Header="Volume" Binding="{Binding Volume}" Tag="Volume"/>
-                
-                <!-- Add more columns -->
             </controls:DataGrid.Columns>
 
             <interaction:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Loaded">
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadCoinForPopulateDataGrid}"/>
+                </core:EventTriggerBehavior>
+            </interaction:Interaction.Behaviors>
+
+        </controls:DataGrid>
+        <ComboBox
+            ItemsSource="{x:Bind ViewModel.Ids}"
+            SelectedItem="{x:Bind ViewModel.SelectedId, Mode=TwoWay}"
+            Grid.Column="1"
+            Grid.Row="0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <interaction:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
                 </core:EventTriggerBehavior>
             </interaction:Interaction.Behaviors>
-            
-        </controls:DataGrid>
-        
+        </ComboBox>
         
     </Grid>
     

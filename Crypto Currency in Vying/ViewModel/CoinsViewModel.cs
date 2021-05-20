@@ -22,18 +22,22 @@ namespace Crypto_Currency_in_Vying
         public CoinsViewModel(ISettingsService settingsService)
         {   
             LoadCoinsAsyncRelayCommand = new AsyncRelayCommand(LoadPostsAsync);
+            LoadCoinForPopulateDataGrid = new AsyncRelayCommand(LoadCoinAsync);
             SettingsService = settingsService;
             selectedId = settingsService.GetValue<string>(nameof(SelectedId)) ?? Ids[0];
             
         }
         public IAsyncRelayCommand LoadCoinsAsyncRelayCommand { get; }
+        public IAsyncRelayCommand LoadCoinForPopulateDataGrid { get; }
 
         public ObservableCollection<Coin> Coins = new ObservableCollection<Coin>();
 
         public IReadOnlyList<string> Ids = new[]
         {
             "bitcoin",
-            "ethereum"
+            "ethereum",
+            "ripple",
+            "stellar"
         };
 
         private string selectedId;
@@ -54,18 +58,30 @@ namespace Crypto_Currency_in_Vying
 
         private readonly ICoinsService CoinsService = Ioc.Default.GetRequiredService<ICoinsService>();
 
+        private async Task LoadCoinAsync()
+        {
+            Coins.Clear();
+
+            var response = await CoinsService.LoadCoinsAsync(Ids[0]);
+
+            foreach (var item in response.CurrentPrice)
+            {
+                if (item.Currency.Equals("EUR"))
+                    Coins.Add(new Coin(response.Name, item.market.Name, item.Currency, item.Value, item.Volume, response.Image.Thumb));
+            }
+        }
+
         private async Task LoadPostsAsync()
         {
             Coins.Clear();
-            foreach(string id in Ids) 
-            { 
-                var response = await CoinsService.LoadCoinsAsync(id);
+             
+                var response = await CoinsService.LoadCoinsAsync(SelectedId);
                 foreach(var item in response.CurrentPrice)
                 {
                     if (item.Currency.Equals("EUR"))
-                        Coins.Add(new Coin(response.Name,item.market.Name ,item.Currency, item.Value, item.Volume));
+                        Coins.Add(new Coin(response.Name,item.market.Name ,item.Currency, item.Value, item.Volume, response.Image.Thumb));
                 }
-            }
+            
         }
 
         
