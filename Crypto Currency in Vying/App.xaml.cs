@@ -1,5 +1,6 @@
 ﻿using Crypto_Currency_in_Vying.Models;
 using Crypto_Currency_in_Vying.Services;
+using Crypto_Currency_in_Vying.View;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Refit;
@@ -84,7 +85,7 @@ namespace Crypto_Currency_in_Vying
                     // Quando lo stack di esplorazione non viene ripristinato, passare alla prima pagina
                     // configurando la nuova pagina per passare le informazioni richieste come parametro di
                     // navigazione
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(DashBoard), e.Arguments);
                 }
                 // Assicurarsi che la finestra corrente sia attiva
                 Window.Current.Activate();

@@ -4,4 +4,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Crypto_Currency_in_Vying">
 
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+            </ResourceDictionary.MergedDictionaries>
+            <AcrylicBrush x:Key="CustomAcrylicBackgroundBrush" BackgroundSource="Backdrop"
+                          TintOpacity="0.55" TintColor="Black"/>
+            <AcrylicBrush x:Key="CustomAcrylicDataGridBackgroundBrush" BackgroundSource="HostBackdrop"
+                          TintOpacity="0.40" TintColor="DarkGoldenrod" FallbackColor="Red"/>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>

@@ -10,33 +10,29 @@
     xmlns:Model="using:Crypto_Currency_in_Vying.Models"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource CustomAcrylicBackgroundBrush}">
 
+    <Page.Resources>
+        <Style x:Key="DataGridCustomStyle" TargetType="controls:DataGrid">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="CanUserSortColumns" Value="True"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="Background" Value="{StaticResource CustomAcrylicDataGridBackgroundBrush}"/>
+            <Setter Property="AlternatingRowBackground" Value="{StaticResource CustomAcrylicDataGridBackgroundBrush}"/>
+
+        </Style>
+        
+    </Page.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+            
 
-
-        <Button
-            Grid.Row="1"
-            Grid.Column="0"
-            HorizontalAlignment="Center"
-            Content="Load Coins"
-            Command="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand}"/>
         <controls:DataGrid
-            Grid.Column="1"
+            Style="{StaticResource DataGridCustomStyle}"
             ItemsSource="{x:Bind ViewModel.Coins}"
-            CanUserSortColumns="True"
-            AutoGenerateColumns="False"
             Sorting="CoinsDataGrid_Sorting"
             x:Name="CoinsDataGrid">
 
+            
             <controls:DataGrid.Columns>
                 <controls:DataGridTextColumn Header="Name" Binding="{Binding Name}" Tag="Name"/>
                 <controls:DataGridTextColumn Header="Currency" Binding="{Binding Currency}" Tag="Currency"/>
@@ -55,15 +51,7 @@
             
         </controls:DataGrid>
         
-        <ProgressBar
-            Grid.Column="1"
-            Grid.Row="1"
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Width="100"
-            Height="50"
-            Visibility="{x:Bind ViewModel.LoadCoinsAsyncRelayCommand.IsRunning, Mode=OneWay}"
-            />
+        
     </Grid>
     
     
