@@ -10,7 +10,7 @@
     xmlns:Model="using:Crypto_Currency_in_Vying.Models"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
-    Background="{ThemeResource CustomAcrylicBackgroundBrush}">
+    Background="{ThemeResource CustomPageBackground}">
 
     <Page.Resources>
         <Style x:Key="DataGridCustomStyle" TargetType="controls:DataGrid">
