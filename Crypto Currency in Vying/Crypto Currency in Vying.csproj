@@ -119,12 +119,17 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\GroupInfoList.cs" />
     <Compile Include="Models\Coin.cs" />
     <Compile Include="ViewModel\CoinsViewModel.cs" />
     <Compile Include="Models\PostQueryResponse.cs" />
     <Compile Include="Models\ISettingsService.cs" />
     <Compile Include="Services\ICoinsService.cs" />
     <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="ViewModel\CustomItemCardViewModel.cs" />
+    <Compile Include="View\CustomItemCard.xaml.cs">
+      <DependentUpon>CustomItemCard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\DashBoard.xaml.cs">
       <DependentUpon>DashBoard.xaml</DependentUpon>
     </Compile>
@@ -154,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="View\CustomItemCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\DashBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -32,15 +32,19 @@ namespace Crypto_Currency_in_Vying.View
         {
             FrameNavigationOptions navOptions = new FrameNavigationOptions();
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
+            ///Implementing Navigation view navigation
             Type pageType;
             if (args.InvokedItemContainer == MainPage)
             {
                 pageType = typeof(MainPage);
             }
+            else if(args.InvokedItemContainer == Graphs)
+            {
+                pageType = typeof(CustomItemCard);
+            }
             else pageType = null;
 
             contentFrame.NavigateToType(pageType, null, navOptions);
-
         }
     }
 }

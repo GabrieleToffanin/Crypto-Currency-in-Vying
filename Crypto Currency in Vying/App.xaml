@@ -5,6 +5,7 @@
     xmlns:local="using:Crypto_Currency_in_Vying">
 
     <Application.Resources>
+        <!--#region ApplicationResources-->
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
@@ -12,10 +13,12 @@
             <AcrylicBrush x:Key="CustomAcrylicBackgroundBrush" BackgroundSource="Backdrop"
                           TintOpacity="0.55" TintColor="Black"/>
             <AcrylicBrush x:Key="CustomAcrylicDataGridBackgroundBrush" BackgroundSource="HostBackdrop"
-                          TintOpacity="0.40" TintColor="DarkGoldenrod" FallbackColor="Red"/>
+                          TintOpacity="0.40" TintColor="Snow" FallbackColor="Snow"/>
             <AcrylicBrush x:Key="CustomPageBackground" BackgroundSource="HostBackdrop"
-                          TintOpacity="0.50" TintColor="Snow" FallbackColor="Snow"/>
+                          TintOpacity="0.50" TintColor="Black" FallbackColor="Black"/>
+            
         </ResourceDictionary>
+        <!--#endregion-->
     </Application.Resources>
 
 </Application>

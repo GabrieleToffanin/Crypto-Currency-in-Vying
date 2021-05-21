@@ -45,6 +45,8 @@ namespace Crypto_Currency_in_Vying.Models
     {
         [JsonPropertyName("thumb")]
         public string Thumb { get; set; }
+        [JsonPropertyName("large")]
+        public string Large { get; set; }
     }
 
     

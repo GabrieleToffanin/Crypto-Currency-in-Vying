@@ -17,7 +17,7 @@ namespace Crypto_Currency_in_Vying
 {
     public class CoinsViewModel : ObservableRecipient
     {
-
+        #region GeneralImplementations
         private readonly ISettingsService SettingsService;
         public CoinsViewModel(ISettingsService settingsService)
         {   
@@ -84,7 +84,6 @@ namespace Crypto_Currency_in_Vying
             
         }
 
-        
-
+        #endregion
     }
 }

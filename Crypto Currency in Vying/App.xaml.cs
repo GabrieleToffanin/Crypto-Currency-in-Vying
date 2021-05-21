@@ -1,6 +1,7 @@
 ﻿using Crypto_Currency_in_Vying.Models;
 using Crypto_Currency_in_Vying.Services;
 using Crypto_Currency_in_Vying.View;
+using Crypto_Currency_in_Vying.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Refit;
@@ -54,6 +55,7 @@ namespace Crypto_Currency_in_Vying
                 .AddSingleton<ISettingsService, SettingsService>()
                 .AddSingleton(RestService.For<ICoinsService>("https://api.coingecko.com/"))
                 .AddTransient<CoinsViewModel>()
+                .AddTransient<CustomItemCardViewModel>()
                 .BuildServiceProvider());
 
 
