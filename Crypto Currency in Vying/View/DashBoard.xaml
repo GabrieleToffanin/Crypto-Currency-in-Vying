@@ -27,7 +27,7 @@
                         <AdaptiveTrigger MinWindowWidth="{x:Bind nvSample.CompactModeThresholdWidth}" />
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
-                        <Setter Target="nvSample.PaneDisplayMode" Value="Left" />
+                        <Setter Target="nvSample.PaneDisplayMode" Value="Top" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
@@ -37,12 +37,12 @@
                         Style="{StaticResource NavViewCustomTemplate}"
                         PaneTitle="CryptoCurrency">
             <NavigationView.MenuItems>
-                <NavigationViewItem Content="Coins List"  x:Name="MainPage">
+                <NavigationViewItem Content="General"  x:Name="General">
                     <NavigationViewItem.Icon>
                         <BitmapIcon UriSource="ms-appx:///Assets/BitMapCoin.png"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Content="Graphs" x:Name="Graphs" Icon="FourBars"/>
+                <NavigationViewItem Content="Coins List" x:Name="CoinsList" Icon="FourBars"/>
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame"/>
         </NavigationView>

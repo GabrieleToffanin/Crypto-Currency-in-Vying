@@ -25,7 +25,7 @@ namespace Crypto_Currency_in_Vying.View
         public DashBoard()
         {
             this.InitializeComponent();
-            contentFrame.Navigate(typeof(MainPage));
+            contentFrame.Navigate(typeof(CustomItemCard));
         }
 
         private void nvSample_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -34,11 +34,11 @@ namespace Crypto_Currency_in_Vying.View
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
             ///Implementing Navigation view navigation
             Type pageType;
-            if (args.InvokedItemContainer == MainPage)
+            if (args.InvokedItemContainer == General)
             {
                 pageType = typeof(MainPage);
             }
-            else if(args.InvokedItemContainer == Graphs)
+            else if(args.InvokedItemContainer == CoinsList)
             {
                 pageType = typeof(CustomItemCard);
             }
