@@ -1,4 +1,5 @@
-﻿using Crypto_Currency_in_Vying.ViewModel;
+﻿using Crypto_Currency_in_Vying.Models;
+using Crypto_Currency_in_Vying.ViewModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,12 @@ namespace Crypto_Currency_in_Vying.View
         {
             await ViewModel.LoadCardAsync();
             ViewModel.Initialize();
+        }
+        private void myGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Coin current = myGridView.SelectedItem as Coin;
+
+            ShowSomething.Text = current.Name;
         }
     }
 }

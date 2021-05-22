@@ -5,7 +5,9 @@
     xmlns:local="using:Crypto_Currency_in_Vying.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    xmlns:Models="using:Crypto_Currency_in_Vying.Models" xmlns:interaction="using:Microsoft.Xaml.Interactivity" xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:Models="using:Crypto_Currency_in_Vying.Models" xmlns:interaction="using:Microsoft.Xaml.Interactivity" 
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource CustomPageBackground}"
     Loaded="Page_Loaded">
@@ -58,9 +60,14 @@
     <!--#region GridView-->
         <GridView
             Grid.Column="0"
+            x:Name="myGridView"
             ItemsSource="{Binding Source={StaticResource CoinsSource}}"
             ItemTemplate="{StaticResource ImageTextTemplate}"
-            SelectedItem="{x:Bind ViewModel.SelectedCoin, Mode=TwoWay}">
+            IsItemClickEnabled="True"
+            SelectionMode="Single"
+            CanDragItems="True"
+            SelectedItem="{x:Bind ViewModel.SelectedCoin, Mode=TwoWay}"
+            SelectionChanged="myGridView_SelectionChanged">
             <GridView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.HeaderTemplate>
@@ -73,5 +80,8 @@
             </GridView.GroupStyle>
         </GridView>
         <!--#endregion-->
+
+        <TextBlock x:Name="ShowSomething"
+                   Grid.Column="1"/>
     </Grid>
 </Page>
