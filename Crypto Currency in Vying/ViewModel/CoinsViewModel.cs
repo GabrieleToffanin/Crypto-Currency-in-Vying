@@ -74,7 +74,6 @@ namespace Crypto_Currency_in_Vying
         private async Task LoadPostsAsync()
         {
             Coins.Clear();
-             
                 var response = await CoinsService.LoadCoinsAsync(SelectedId);
                 foreach(var item in response.CurrentPrice)
                 {
@@ -84,6 +83,8 @@ namespace Crypto_Currency_in_Vying
             
         }
 
+
+       
         #endregion
     }
 }
