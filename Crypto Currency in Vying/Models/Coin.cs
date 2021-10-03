@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Crypto_Currency_in_Vying.Models
 {
-    internal sealed class Coin
+    public class Coin
     {
         public Coin(string name,string market, string currency, double value, double volume, string image)
         {

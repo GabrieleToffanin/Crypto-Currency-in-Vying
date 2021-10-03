@@ -17,6 +17,7 @@
             <AcrylicBrush x:Key="CustomPageBackground" BackgroundSource="HostBackdrop"
                           TintOpacity="0.50" TintColor="Black" FallbackColor="Black"/>
             
+            
         </ResourceDictionary>
         <!--#endregion-->
     </Application.Resources>

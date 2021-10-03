@@ -43,7 +43,10 @@ namespace Crypto_Currency_in_Vying.View
         {
             Coin current = myGridView.SelectedItem as Coin;
 
-            ShowSomething.Text = current.Name;
+            Name.Text = $"{Name.Text} {current.Name}";
+            Currency.Text = $"{Currency.Text} {current.Currency}";
+            Value.Text = $"{Value.Text} {current.Value.ToString()}";
+            Volume.Text = $"{Volume.Text} {current.Volume.ToString()}";
         }
     }
 }

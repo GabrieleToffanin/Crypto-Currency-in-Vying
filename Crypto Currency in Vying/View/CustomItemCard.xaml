@@ -16,6 +16,9 @@
         <Style x:Key="CustomTextBlockStyle" TargetType="TextBlock" >
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
+        <Style x:Key="CustomTextBox" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource CustomPageBackground}"/>
+        </Style>
         <DataTemplate x:Key ="ImageTextTemplate" x:DataType="Models:Coin">
             <Grid AutomationProperties.Name="{x:Bind Name}" Width="280">
                 <Grid.ColumnDefinitions>
@@ -50,14 +53,15 @@
         <CollectionViewSource x:Name="CoinsSource" Source="{Binding Coins}" IsSourceGrouped="True"/>
     </Page.Resources>
     <!--#endregion-->
-    
+
     <Grid>
+        <!--region GridSpecsDefinitions-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-    <!--#region GridView-->
+        <!--#endregion-->
+        <!--#region GridView-->
         <GridView
             Grid.Column="0"
             x:Name="myGridView"
@@ -80,8 +84,50 @@
             </GridView.GroupStyle>
         </GridView>
         <!--#endregion-->
-
-        <TextBlock x:Name="ShowSomething"
-                   Grid.Column="1"/>
+        <!--#region Coin Infos Section-->
+        <StackPanel Orientation="Vertical"
+                    Grid.Column="1">
+            <TextBlock Text="Coin Infos"
+                       Margin="0,0,0,20"
+                       FontSize="40"
+                       Style="{StaticResource CustomTextBlockStyle}"
+                       
+                       />
+            <TextBox Text="Name : "
+                     x:Name="Name"
+                     FontWeight="Bold"
+                     FontSize="20"
+                     IsReadOnly="True"
+                     Style="{StaticResource CustomTextBox}"
+                     Background="{ThemeResource CustomPageBackground}"
+                     Margin="0,0,0,20"/>
+            <TextBox Text="Currency : "
+                     x:Name="Currency"
+                     IsReadOnly="True"
+                     FontSize="20"
+                     FontWeight="Bold"
+                     Background="{ThemeResource CustomPageBackground}"
+                     Style="{StaticResource CustomTextBox}"
+                     Margin="0,0,0,20"/>
+            <TextBox Text="Value : "
+                     x:Name="Value"
+                     FontWeight="Bold"
+                     IsReadOnly="True"
+                     FontSize="20"
+                     Background="{ThemeResource CustomPageBackground}"
+                     Style="{StaticResource CustomTextBox}"
+                     Margin="0,0,0,20"/>
+            <TextBox Text="Volume :"
+                     Background="{ThemeResource CustomPageBackground}"
+                     Style="{StaticResource CustomTextBox}"
+                     FontWeight="Bold"
+                     IsReadOnly="True"
+                     FontSize="20"
+                     x:Name="Volume"
+                     Margin="0,0,0,20"/>
+            
+            
+        </StackPanel>
+        <!--#endregion-->
     </Grid>
 </Page>
