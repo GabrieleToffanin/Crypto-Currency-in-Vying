@@ -189,7 +189,7 @@
       <Version>7.0.2</Version>
     </PackageReference>
     <PackageReference Include="Refit">
-      <Version>6.0.38</Version>
+      <Version>7.2.22</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Json">
       <Version>5.0.2</Version>
